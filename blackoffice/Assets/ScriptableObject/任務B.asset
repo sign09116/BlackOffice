@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 239c108e07483e341820f26812888a68, type: 3}
+  m_Name: "\u4EFB\u52D9B"
+  m_EditorClassIdentifier: 
+  OrderMaster: "\u8077\u54E1A"
+  checkMan: "\u8077\u54E1A"
+  Q_Massage:
+  - "\u73A9\u5BB6 \u53BB\u5E6B\u6211\u5012\u676F\u5496\u5561"
+  RewardItem: {fileID: 1520420141854042163, guid: 902d27da3aed8ac40928272ac3084975,
+    type: 3}
