@@ -94,7 +94,7 @@ namespace DT
             TurnBackground();
 
             Vector2 delta = Vector2.down * MoveSpeed * Time.fixedDeltaTime;
-            if (_peak.position.y + delta.y <= patrolArea.yMin)
+            if (_peak.position.y - delta.y >= patrolArea.yMin)
             {
                 _Npcrigidbody2D.MovePosition(_Npcrigidbody2D.position + delta);
 

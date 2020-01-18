@@ -172,6 +172,10 @@ public class NpcBehavior : MonoBehaviour
         }
 
     }
+   /// <summary>
+   /// 給予任務
+   /// </summary>
+   /// <returns></returns>
     public IEnumerator GiveQuest()
     {
         Q = Random.Range(0, questData.Length);
@@ -180,11 +184,20 @@ public class NpcBehavior : MonoBehaviour
         GM.saydialog.SetActive(true);
         GM.saydialog.GetComponentInChildren<Text>().text = questData[Q].Q_Massage[0];
         Invoke("GiveReward", 1f);
+        yield return new WaitForSeconds(1f);
+        GM.maskObj.SetActive(false);
+        GM.saydialog.SetActive(false);
+        
     }
+   /// <summary>
+   /// 給予道具
+   /// </summary>
     public void GiveReward()
     {
         GameObject rewardItem = Instantiate(questData[Q].RewardItem, Camera.main.transform.position, new Quaternion(0, 0, 0, 0));
         rewardItem.transform.SetParent(Itemblock);
+        
+
     }
     #endregion
 
