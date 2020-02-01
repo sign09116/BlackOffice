@@ -29,6 +29,10 @@ public class NpcBehavior : MonoBehaviour
     public GameManager GM;
     [Header("可發布任務")]
     public QuestData[] questData;
+   /// <summary>
+   /// 道具欄位置
+   /// </summary>
+   [Header("道具欄位置")]
     public Transform Itemblock;
     /// <summary>
     /// 給予任務ID
@@ -139,6 +143,8 @@ public class NpcBehavior : MonoBehaviour
         PlayerCo = GameObject.FindGameObjectWithTag("Player").GetComponent<CapsuleCollider2D>();
         PlayerTra = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>(); ;
         GM = GameObject.FindObjectOfType<GameManager>();
+        Itemblock = GameObject.Find("道具欄").transform;
+
     }
     // Use this for initialization
     void Start()
