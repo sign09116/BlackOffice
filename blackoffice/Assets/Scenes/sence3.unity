@@ -123,7 +123,7 @@ GameObject:
   - component: {fileID: 1056723068}
   - component: {fileID: 1056723067}
   m_Layer: 0
-  m_Name: "\u8FA6\u516C\u5BA4-4F"
+  m_Name: "\u8FA6\u516C\u5BA4-2F"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -166,7 +166,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 0fdec91f48f3c6449a60d7b7bc4348e8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 025fd19472ef44340ad30c19ead23d0f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -263,6 +263,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NextSceneName: sence5
   _player: {fileID: 0}
+  Blackaim: {fileID: 0}
 --- !u!1 &1245342162
 GameObject:
   m_ObjectHideFlags: 0
@@ -334,4 +335,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NextSceneName: sence2
-  player: {fileID: 0}
+  _player: {fileID: 0}
+  Blackaim: {fileID: 0}

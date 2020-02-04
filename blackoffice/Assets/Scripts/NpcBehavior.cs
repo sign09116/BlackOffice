@@ -14,6 +14,7 @@ public class NpcBehavior : MonoBehaviour
     public float NPcSpeed;
     public bool IntoEye;
     public Rigidbody2D NPCrig;
+    public SpriteRenderer NpcSp;
     public Vector2 Direction;
     public bool TouchPlayer;
     public Animator Npcaim;
@@ -29,10 +30,10 @@ public class NpcBehavior : MonoBehaviour
     public GameManager GM;
     [Header("可發布任務")]
     public QuestData[] questData;
-   /// <summary>
-   /// 道具欄位置
-   /// </summary>
-   [Header("道具欄位置")]
+    /// <summary>
+    /// 道具欄位置
+    /// </summary>
+    [Header("道具欄位置")]
     public Transform Itemblock;
     /// <summary>
     /// 給予任務ID
@@ -94,6 +95,7 @@ public class NpcBehavior : MonoBehaviour
                 NPCrig.MoveRotation(180);
             }
         }*/
+
         dir = playerMoveControl.standingPoint.position - transform.position;
         dir = Mathf.Abs(dir.x) >= Mathf.Abs(dir.y) ? new Vector2(dir.x, 0) : new Vector2(0, dir.y);
         while (true)
@@ -144,6 +146,7 @@ public class NpcBehavior : MonoBehaviour
         PlayerTra = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>(); ;
         GM = GameObject.FindObjectOfType<GameManager>();
         Itemblock = GameObject.Find("道具欄").transform;
+        NpcSp = GetComponent<SpriteRenderer>();
 
     }
     // Use this for initialization
@@ -178,10 +181,10 @@ public class NpcBehavior : MonoBehaviour
         }
 
     }
-   /// <summary>
-   /// 給予任務
-   /// </summary>
-   /// <returns></returns>
+    /// <summary>
+    /// 給予任務
+    /// </summary>
+    /// <returns></returns>
     public IEnumerator GiveQuest()
     {
         Q = Random.Range(0, questData.Length);
@@ -193,16 +196,16 @@ public class NpcBehavior : MonoBehaviour
         yield return new WaitForSeconds(1f);
         GM.maskObj.SetActive(false);
         GM.saydialog.SetActive(false);
-        
+
     }
-   /// <summary>
-   /// 給予道具
-   /// </summary>
+    /// <summary>
+    /// 給予道具
+    /// </summary>
     public void GiveReward()
     {
         GameObject rewardItem = Instantiate(questData[Q].RewardItem, Camera.main.transform.position, new Quaternion(0, 0, 0, 0));
         rewardItem.transform.SetParent(Itemblock);
-        
+
 
     }
     #endregion

@@ -16,6 +16,8 @@ public class PlayerMovecontrol : MonoBehaviour
     public GameObject[] MoveButton;
     public Rigidbody2D PlayerRd;
     public Transform PlayerTm;
+    public SpriteRenderer PlayerSP;
+    public Sprite[] idel;
     public bool MoveUP = false;
     public bool MoveDown = false;
     public bool MoveRight = false;
@@ -24,7 +26,7 @@ public class PlayerMovecontrol : MonoBehaviour
     public Collider2D DeadZoom;
     public Transform standingPoint;
     public bool inDeadZoom;
-
+    public Animator PlayerAni;
 
 
     #endregion
@@ -72,16 +74,23 @@ public class PlayerMovecontrol : MonoBehaviour
 
 
 
+    private void Start()
+    {
+        PlayerAni = GetComponent<Animator>();
+        PlayerSP = GetComponent<SpriteRenderer>();
 
+    }
     public void OnMoveUpDown()
     {
         MoveUP = true;
+        PlayerAni.SetBool("向上", true);
         // _moveCoroutine = StartCoroutine(Move(Vector2.up));
     }
 
     public void OnMoveUpUp()
     {
         MoveUP = false;
+        PlayerAni.SetBool("向上", false);
         // StopCoroutine(_moveCoroutine);
     }
 
@@ -90,12 +99,16 @@ public class PlayerMovecontrol : MonoBehaviour
     {
 
         MoveDown = true;
+        PlayerAni.SetBool("向下", true);
+
         // _moveCoroutine = StartCoroutine(Move(Vector2.down));
     }
 
     public void OnMovedownUp()
     {
         MoveDown = false;
+        PlayerAni.SetBool("向下", false);
+        PlayerSP.sprite = idel[3];
         // StopCoroutine(_moveCoroutine);
     }
 
@@ -103,6 +116,9 @@ public class PlayerMovecontrol : MonoBehaviour
     public void OnMoverightDown()
     {
         MoveRight = true;
+        PlayerAni.SetBool("向右", true);
+
+
         // _moveCoroutine = StartCoroutine(Move(Vector2.right));
 
     }
@@ -110,6 +126,8 @@ public class PlayerMovecontrol : MonoBehaviour
     public void OnMoverightUp()
     {
         MoveRight = false;
+        PlayerAni.SetBool("向右", false);
+        PlayerSP.sprite = idel[2];
         // StopCoroutine(_moveCoroutine);
 
     }
@@ -119,12 +137,16 @@ public class PlayerMovecontrol : MonoBehaviour
     public void OnMoveleftDown()
     {
         MoveLeft = true;
+        PlayerAni.SetBool("向左", true);
+
         // _moveCoroutine = StartCoroutine(Move(Vector2.left));
     }
 
     public void OnMoveleftUp()
     {
         MoveLeft = false;
+        PlayerAni.SetBool("向左", false);
+        PlayerSP.sprite = idel[1];
         // StopCoroutine(_moveCoroutine);
     }
 
@@ -152,23 +174,27 @@ public class PlayerMovecontrol : MonoBehaviour
         {
             if (npc.position.x >= transform.position.x)
             {
-                PlayerRd.MoveRotation(0);
+                // PlayerRd.MoveRotation(0);
+                PlayerAni.SetTrigger("向右待機");
             }
             else
             {
-                PlayerRd.MoveRotation(180);
-
+                //PlayerRd.MoveRotation(180);
+                // PlayerSP.flipY = true;
+                PlayerAni.SetTrigger("向左待機");
             }
         }
         else
         {
             if (npc.position.y >= transform.position.y)
             {
-                PlayerRd.MoveRotation(90);
+                // PlayerRd.MoveRotation(90);
+                PlayerAni.SetTrigger("向下待機");
             }
             else
             {
-                PlayerRd.MoveRotation(-90);
+                // PlayerRd.MoveRotation(-90);
+                PlayerAni.SetTrigger("待機");
             }
         }
         inDeadZoom = true;
@@ -188,22 +214,32 @@ public class PlayerMovecontrol : MonoBehaviour
         if (MoveUP)
         {
             PlayerTm.Translate(0, 1 * MoveSpeed * Time.deltaTime, 0, Space.World);
-            PlayerRd.MoveRotation(90);
+            // PlayerRd.MoveRotation(0);
+            PlayerSP.flipY = false;
+
         }
         else if (MoveDown)
         {
             PlayerTm.Translate(0, -1 * MoveSpeed * Time.deltaTime, 0, Space.World);
-            PlayerRd.MoveRotation(-90);
+            //PlayerRd.MoveRotation(180);
+            standingPoint = transform.Find("Triangle (1)");
+            PlayerSP.sprite = idel[0];
+
+
         }
         else if (MoveRight)
         {
             PlayerTm.Translate(1 * MoveSpeed * Time.deltaTime, 0, 0, Space.World);
-            PlayerRd.MoveRotation(0);
+            //PlayerRd.MoveRotation(-90);
+            standingPoint = transform.Find("Triangle (3)");
+            PlayerSP.sprite = idel[2];
         }
         else if (MoveLeft)
         {
             PlayerTm.Translate(-1 * MoveSpeed * Time.deltaTime, 0, 0, Space.World);
-            PlayerRd.MoveRotation(180);
+            //PlayerRd.MoveRotation(90);
+            standingPoint = transform.Find("Triangle (2)");
+            PlayerSP.sprite = idel[1];
         }
         else
         {
