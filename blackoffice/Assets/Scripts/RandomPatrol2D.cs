@@ -41,7 +41,7 @@ namespace DT
         public int turnLeftPosition;
         [Header("行為總和")]
         public int actionSum;
-        private Rigidbody2D _Npcrigidbody2D;
+        protected Rigidbody2D _Npcrigidbody2D;
         public NpcBehavior m_NPC;
 
 
@@ -74,11 +74,15 @@ namespace DT
         }
         private void GoForward()
         {
-
+            m_NPC.Npcaim.SetBool("向右", false);
+            m_NPC.Npcaim.SetBool("向下", false);
+            m_NPC.Npcaim.SetBool("向左", false);
             TurnForward();
+            m_NPC.Npcaim.SetBool("看上", false);
+            m_NPC.Npcaim.SetBool("向上", true);
 
             Vector2 delta = Vector2.up * MoveSpeed * Time.fixedDeltaTime;
-            m_NPC.Npcaim.SetTrigger("向上");
+
             if (_peak.position.y + delta.y <= patrolArea.yMax)
             {
                 _Npcrigidbody2D.MovePosition(_Npcrigidbody2D.position + delta);
@@ -94,11 +98,16 @@ namespace DT
         }
         private void GoBackground()
         {
+            m_NPC.Npcaim.SetBool("向右", false);
+            m_NPC.Npcaim.SetBool("向上", false);
+            m_NPC.Npcaim.SetBool("向左", false);
 
             TurnBackground();
+            m_NPC.Npcaim.SetBool("看下", false);
+            m_NPC.Npcaim.SetBool("向下", true);
 
             Vector2 delta = Vector2.down * MoveSpeed * Time.fixedDeltaTime;
-            m_NPC.Npcaim.SetTrigger("向下");
+
             if (_peak.position.y - delta.y >= patrolArea.yMin)
             {
                 _Npcrigidbody2D.MovePosition(_Npcrigidbody2D.position + delta);
@@ -115,12 +124,16 @@ namespace DT
         }
         private void GoRight()
         {
+            m_NPC.Npcaim.SetBool("向上", false);
+            m_NPC.Npcaim.SetBool("向下", false);
+            m_NPC.Npcaim.SetBool("向左", false);
 
             TurnRight();
-
+            m_NPC.Npcaim.SetBool("看右", false);
+            m_NPC.Npcaim.SetBool("向右", true);
 
             Vector2 delta = Vector2.right * MoveSpeed * Time.fixedDeltaTime;
-            m_NPC.Npcaim.SetTrigger("向右");
+
             if (_peak.position.x + delta.x <= patrolArea.xMax)
             {
                 _Npcrigidbody2D.MovePosition(_Npcrigidbody2D.position + delta);
@@ -137,11 +150,15 @@ namespace DT
 
         private void GoLeft()
         {
-
+            m_NPC.Npcaim.SetBool("向上", false);
+            m_NPC.Npcaim.SetBool("向下", false);
+            m_NPC.Npcaim.SetBool("向右", false);
             TurnLeft();
+            m_NPC.Npcaim.SetBool("看左", false);
+            m_NPC.Npcaim.SetBool("向左", true);
 
             Vector2 delta = Vector2.left * MoveSpeed * Time.fixedDeltaTime;
-            m_NPC.Npcaim.SetTrigger("向左");
+
             if (_peak.position.x + delta.x >= patrolArea.xMin)
             {
 
@@ -161,25 +178,40 @@ namespace DT
         }
         private void TurnForward()
         {
-            _Npcrigidbody2D.MoveRotation(90);
+            m_NPC.Npcaim.SetBool("看上", true);
+            _Npcrigidbody2D.MoveRotation(0);
             Debug.Log("TurnForward " + _Npcrigidbody2D.transform.eulerAngles);
+            m_NPC.NpcSp.flipY = false;
         }
         private void TurnBackground()
         {
-            _Npcrigidbody2D.MoveRotation(-90);
+            m_NPC.Npcaim.SetBool("看下", true);
+            _Npcrigidbody2D.MoveRotation(180);
+
             Debug.Log("TurnBackground " + _Npcrigidbody2D.transform.eulerAngles);
+            m_NPC.NpcSp.flipY = true;
+            Quaternion rotation = Quaternion.Euler(0, 0, 0);
+            m_NPC.NPcfxCanvas.GetComponent<RectTransform>().rotation = rotation;
         }
         private void TurnRight()
         {
+            m_NPC.Npcaim.SetBool("看右", true);
             _Npcrigidbody2D.MoveRotation(0);
+
             Debug.Log("TurnRight " + _Npcrigidbody2D.transform.eulerAngles);
             m_NPC.NpcSp.flipY = false;
         }
         private void TurnLeft()
         {
+            m_NPC.Npcaim.SetBool("看左", true);
             _Npcrigidbody2D.MoveRotation(180);
+
+
+
             Debug.Log("TurnLeft " + _Npcrigidbody2D.transform.eulerAngles);
             m_NPC.NpcSp.flipY = true;
+            Quaternion rotation = Quaternion.Euler(0, 0, 0);
+            m_NPC.NPcfxCanvas.GetComponent<RectTransform>().rotation = rotation;
         }
         #endregion
 

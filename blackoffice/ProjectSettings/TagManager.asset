@@ -3,7 +3,17 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - up
+  - NPC
+  - BlackScene
+  - down
+  - DeadZoom
+  - right
+  - left
+  - NPCHeadMessage
+  - NPCA
+  - NPCB
   layers:
   - Default
   - TransparentFX

@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using DT;
 
+
 public class NpcBehavior : MonoBehaviour
 {
     #region 屬性
@@ -11,6 +12,8 @@ public class NpcBehavior : MonoBehaviour
     public Transform NpcTra;
     public Collider2D PlayerCo;
     public Transform PlayerTra;
+    [Header("原始位置")]
+    public Vector2 O_Position;
     public float NPcSpeed;
     public bool IntoEye;
     public Rigidbody2D NPCrig;
@@ -39,6 +42,10 @@ public class NpcBehavior : MonoBehaviour
     /// 給予任務ID
     /// </summary>
     public int Q;
+    public GameObject NPcfxCanvas;
+    [Header("NPC頭頂訊息")]
+    public GameObject Npcfx1, Npcfx2, Npcfx3, Npcfx4;
+
     #endregion
 
     #region 方法
@@ -46,10 +53,11 @@ public class NpcBehavior : MonoBehaviour
     {
         if (IntoEye)
         {
+
             //Direction = Vector2.left;
             //NPCrig.MovePosition(NPCrig.position + Direction * Time.deltaTime * NPcSpeed);
             Debug.Log("進入視線範圍");
-            Npcaim.SetTrigger("Move");
+            Npcaim.SetBool("Move", true);
             EyeBox.SetActive(false);
             IntoEye = false;
         }
@@ -61,16 +69,27 @@ public class NpcBehavior : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+
+        if (GM.HaveQuest.Count >= 3) return;
+
+
+
         if (collision.CompareTag("Player"))
         {
+
+
             collision = PlayerCo;
 
             IntoEye = true;
             randomPatrol2D.StopPatrol();
             Player.GetComponent<PlayerMovecontrol>().FaceNPC(transform);
             GM.maskObj.GetComponent<Image>().raycastTarget = true;
+
+
             StartCoroutine(MoveToPlayer());
             StartCoroutine(GiveQuest());
+            Npcaim.SetBool("Move", false);
+
 
 
         }
@@ -80,7 +99,14 @@ public class NpcBehavior : MonoBehaviour
     private IEnumerator MoveToPlayer()
     {
         EyeBox.SetActive(false);
-        Npcaim.SetTrigger("Move");
+        Npcaim.SetBool("向上", false);
+        Npcaim.SetBool("向下", false);
+        Npcaim.SetBool("向左", false);
+        Npcaim.SetBool("向右", false);
+        Npcaim.SetBool("看上", false);
+        Npcaim.SetBool("看下", false);
+        Npcaim.SetBool("看左", false);
+        Npcaim.SetBool("看右", false);
         WaitForFixedUpdate wait = new WaitForFixedUpdate();
         PlayerMovecontrol playerMoveControl = Player.GetComponent<PlayerMovecontrol>();
         Vector2 dir = playerMoveControl.standingPoint.position - transform.position;
@@ -107,8 +133,10 @@ public class NpcBehavior : MonoBehaviour
                 yield break;
             }
             TouchPlayer = true;
+
             //GM.Invoke("GiveReward", 5f);
             yield return wait;
+
 
         }
     }
@@ -124,7 +152,10 @@ public class NpcBehavior : MonoBehaviour
 
     public void NpcReturnPosition()
     {
-        NPCrig.MovePosition(randomPatrol2D.OriginalPosition);
+
+        float disx = O_Position.x;
+        float disy = O_Position.y;
+        NPCrig.MovePosition(new Vector2(disx, disy) * Time.fixedDeltaTime);
 
 
         isreturn = true;
@@ -147,6 +178,11 @@ public class NpcBehavior : MonoBehaviour
         GM = GameObject.FindObjectOfType<GameManager>();
         Itemblock = GameObject.Find("道具欄").transform;
         NpcSp = GetComponent<SpriteRenderer>();
+        NPcfxCanvas = transform.GetChild(2).gameObject;
+        Npcfx1 = GameObject.Find("NPCA頭頂訊息1");
+        Npcfx2 = GameObject.Find("NPCA頭頂訊息2");
+        Npcfx3 = GameObject.Find("NPCB頭頂訊息1");
+        Npcfx4 = GameObject.Find("NPCB頭頂訊息2");
 
     }
     // Use this for initialization
@@ -187,6 +223,8 @@ public class NpcBehavior : MonoBehaviour
     /// <returns></returns>
     public IEnumerator GiveQuest()
     {
+
+
         Q = Random.Range(0, questData.Length);
         Debug.Log("任務ID" + Q);
         yield return new WaitForSeconds(3f);
@@ -196,7 +234,7 @@ public class NpcBehavior : MonoBehaviour
         yield return new WaitForSeconds(1f);
         GM.maskObj.SetActive(false);
         GM.saydialog.SetActive(false);
-
+        // NpcReturnPosition();
     }
     /// <summary>
     /// 給予道具
@@ -205,6 +243,7 @@ public class NpcBehavior : MonoBehaviour
     {
         GameObject rewardItem = Instantiate(questData[Q].RewardItem, Camera.main.transform.position, new Quaternion(0, 0, 0, 0));
         rewardItem.transform.SetParent(Itemblock);
+        GM.HaveQuest.Add(questData[Q].RewardItem);
 
 
     }

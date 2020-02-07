@@ -5,6 +5,7 @@ using DT;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using System.Linq;
 
 public class GameManager : MonoBehaviour
 {
@@ -36,6 +37,10 @@ public class GameManager : MonoBehaviour
     public string[] changeText;
     [Header("玩家名稱輸入欄位")]
     public InputField _inputname;
+    /// <summary>
+    /// 玩家持有任務清單
+    /// </summary>
+    public List<GameObject> HaveQuest;
     #endregion
 
 
@@ -102,7 +107,7 @@ public class GameManager : MonoBehaviour
     public void GetPlayerName()
     {
         PlayerPrefs.SetString(PlayerName, _inputname.text);
-        Debug.Log(("玩家名稱")+PlayerName);
+        Debug.Log(("玩家名稱") + PlayerName);
     }
 
 }
