@@ -182,6 +182,7 @@ namespace DT
             _Npcrigidbody2D.MoveRotation(0);
             Debug.Log("TurnForward " + _Npcrigidbody2D.transform.eulerAngles);
             m_NPC.NpcSp.flipY = false;
+            m_NPC.NPcfxCanvas.transform.eulerAngles = new Vector3(0, 0, 0);
         }
         private void TurnBackground()
         {
@@ -190,8 +191,9 @@ namespace DT
 
             Debug.Log("TurnBackground " + _Npcrigidbody2D.transform.eulerAngles);
             m_NPC.NpcSp.flipY = true;
-            Quaternion rotation = Quaternion.Euler(0, 0, 0);
-            m_NPC.NPcfxCanvas.GetComponent<RectTransform>().rotation = rotation;
+            //Quaternion rotation = Quaternion.Euler(0, 0, 0);
+            //m_NPC.NPcfxCanvas.GetComponent<RectTransform>().rotation = rotation;
+            m_NPC.NPcfxCanvas.transform.eulerAngles = new Vector3(0, 0, 0);
         }
         private void TurnRight()
         {
@@ -200,6 +202,7 @@ namespace DT
 
             Debug.Log("TurnRight " + _Npcrigidbody2D.transform.eulerAngles);
             m_NPC.NpcSp.flipY = false;
+            m_NPC.NPcfxCanvas.transform.eulerAngles = new Vector3(0, 0, 0);
         }
         private void TurnLeft()
         {
@@ -210,8 +213,8 @@ namespace DT
 
             Debug.Log("TurnLeft " + _Npcrigidbody2D.transform.eulerAngles);
             m_NPC.NpcSp.flipY = true;
-            Quaternion rotation = Quaternion.Euler(0, 0, 0);
-            m_NPC.NPcfxCanvas.GetComponent<RectTransform>().rotation = rotation;
+            // Quaternion rotation = Quaternion.Euler(0, 0, 0);
+            m_NPC.NPcfxCanvas.transform.eulerAngles = new Vector3(0, 0, 0);
         }
         #endregion
 
