@@ -9,15 +9,23 @@ public class NpcBehavior : MonoBehaviour
     #region 屬性
 
     public GameObject Player;
+    /// <summary>
+    /// 玩家名稱
+    /// </summary>
+    string my_PlayerName;
     public Transform NpcTra;
     public Collider2D PlayerCo;
     public Transform PlayerTra;
     [Header("原始位置")]
     public Vector2 O_Position;
+    [Header("NPC資料Data")]
+    public NPCData N_Data;
     public float NPcSpeed;
     public bool IntoEye;
     public Rigidbody2D NPCrig;
     public SpriteRenderer NpcSp;
+    [Header("任務回報區域")]
+    public GameObject QuestCheckZone;
     public Vector2 Direction;
     public bool TouchPlayer;
     public Animator Npcaim;
@@ -31,8 +39,8 @@ public class NpcBehavior : MonoBehaviour
     public BoxCollider2D standpoint;
     public BoxCollider2D Npctouch;
     public GameManager GM;
-    [Header("可發布任務")]
-    public QuestData[] questData;
+    // [Header("可發布任務")]
+    // //public QuestData[] questData;
     /// <summary>
     /// 道具欄位置
     /// </summary>
@@ -70,7 +78,7 @@ public class NpcBehavior : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
-        if (GM.HaveQuest.Count >= 3) return;
+        if (GM.HaveQuest.Count >= 3 || N_Data.isQuest) return;
 
 
 
@@ -150,19 +158,19 @@ public class NpcBehavior : MonoBehaviour
 
 
 
-    public void NpcReturnPosition()
-    {
+    // public void NpcReturnPosition()
+    // {
 
-        float disx = O_Position.x;
-        float disy = O_Position.y;
-        NPCrig.MovePosition(new Vector2(disx, disy) * Time.fixedDeltaTime);
-
-
-        isreturn = true;
+    //     float disx = O_Position.x;
+    //     float disy = O_Position.y;
+    //     NPCrig.MovePosition(new Vector2(disx, disy) * Time.fixedDeltaTime);
 
 
+    //     isreturn = true;
 
-    }
+
+
+    // }
     #endregion
 
 
@@ -189,7 +197,7 @@ public class NpcBehavior : MonoBehaviour
     void Start()
     {
 
-
+        my_PlayerName = PlayerPrefs.GetString(GM.PlayerName);
 
     }
 
@@ -224,12 +232,24 @@ public class NpcBehavior : MonoBehaviour
     public IEnumerator GiveQuest()
     {
 
-
-        Q = Random.Range(0, questData.Length);
+        N_Data.isQuest = true;
+        Q = 0;
+        Q = Random.Range(0, N_Data.Q_data.Count);
         Debug.Log("任務ID" + Q);
         yield return new WaitForSeconds(3f);
         GM.saydialog.SetActive(true);
-        GM.saydialog.GetComponentInChildren<Text>().text = questData[Q].Q_Massage[0];
+        if (Q == 0)
+        {
+            int r = Random.Range(0, N_Data.returnNPC_Name.Count);
+            print(r);
+            N_Data.Q_data[Q].checkMan = N_Data.returnNPC_Name[r];
+            GM.saydialog.GetComponentInChildren<Text>().text = my_PlayerName + N_Data.Q_data[Q].Q_Massage[0] + N_Data.Q_data[Q].checkMan;
+        }
+        else
+        {
+            GM.saydialog.GetComponentInChildren<Text>().text = my_PlayerName + N_Data.Q_data[Q].Q_Massage[0];
+        }
+
         Invoke("GiveReward", 1f);
         yield return new WaitForSeconds(1f);
         GM.maskObj.SetActive(false);
@@ -241,9 +261,12 @@ public class NpcBehavior : MonoBehaviour
     /// </summary>
     public void GiveReward()
     {
-        GameObject rewardItem = Instantiate(questData[Q].RewardItem, Camera.main.transform.position, new Quaternion(0, 0, 0, 0));
+
+        GameObject rewardItem = Instantiate(N_Data.Q_data[Q].RewardItem, Camera.main.transform.position, new Quaternion(0, 0, 0, 0));
         rewardItem.transform.SetParent(Itemblock);
-        GM.HaveQuest.Add(questData[Q].RewardItem);
+        GM.HaveQuest.Add(N_Data.Q_data[Q]);
+        GM.ReCheckMan.Add(N_Data.Q_data[Q].checkMan);
+        print(N_Data.Q_data[Q].checkMan);
 
 
     }

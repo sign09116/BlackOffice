@@ -36,11 +36,13 @@ public class GameManager : MonoBehaviour
     [Header("替換道具文字")]
     public string[] changeText;
     [Header("玩家名稱輸入欄位")]
-    public InputField _inputname;
+    public Text _inputname;
     /// <summary>
     /// 玩家持有任務清單
     /// </summary>
-    public List<GameObject> HaveQuest;
+    public List<QuestData> HaveQuest;
+    [Header("回報對象清單")]
+    public List<string> ReCheckMan;
     #endregion
 
 

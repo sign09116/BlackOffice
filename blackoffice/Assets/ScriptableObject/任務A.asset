@@ -15,6 +15,6 @@ MonoBehaviour:
   OrderMaster: "\u8077\u54E1 A"
   checkMan: "\u8077\u54E1 B"
   Q_Massage:
-  - "\u73A9\u5BB6 \u8ACB\u5C07\u6587\u4EF6A\u4EA4\u7D66\u8077\u54E1B"
+  - "\u5C07\u6587\u4EF6\u4EA4\u7D66"
   RewardItem: {fileID: 1520420141854042163, guid: 143c32cda4591ae44ad6ff10b5612ca7,
     type: 3}

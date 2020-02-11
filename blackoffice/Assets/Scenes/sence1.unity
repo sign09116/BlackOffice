@@ -378,6 +378,78 @@ MonoBehaviour:
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   delegates: []
+--- !u!1 &119001784
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 119001785}
+  - component: {fileID: 119001786}
+  - component: {fileID: 119001787}
+  m_Layer: 0
+  m_Name: "\u4EFB\u52D9\u56DE\u5831\u5340\u57DF"
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &119001785
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 119001784}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 383300200}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &119001786
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 119001784}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.118646026, y: 0.027592063}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.4359543, y: 1.3642151}
+  m_EdgeRadius: 0
+--- !u!114 &119001787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 119001784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ec7d31b7ae9e7c43ab9fb70153db875, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  reurnNPC: 
+  C_GM: {fileID: 0}
 --- !u!1 &162118483
 GameObject:
   m_ObjectHideFlags: 0
@@ -412,7 +484,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -45.2, y: -86.8}
+  m_AnchoredPosition: {x: -45.19995, y: -86.80005}
   m_SizeDelta: {x: 160, y: 59}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &162118486
@@ -585,10 +657,12 @@ MonoBehaviour:
   PlayerCo: {fileID: 1844985854}
   PlayerTra: {fileID: 1844985853}
   O_Position: {x: 3.81, y: -1.46}
+  N_Data: {fileID: 11400000, guid: 773da7b5a9ef0184eaa5f274d5ba92e3, type: 2}
   NPcSpeed: 1
   IntoEye: 0
   NPCrig: {fileID: 223244641}
   NpcSp: {fileID: 0}
+  QuestCheckZone: {fileID: 0}
   Direction: {x: 3.84, y: -1.59}
   TouchPlayer: 0
   Npcaim: {fileID: 223244644}
@@ -602,10 +676,6 @@ MonoBehaviour:
   standpoint: {fileID: 1074825433}
   Npctouch: {fileID: 1766960404}
   GM: {fileID: 0}
-  questData:
-  - {fileID: 11400000, guid: 2ec199cb9424fb64bbc98b98ac2db3c0, type: 2}
-  - {fileID: 11400000, guid: 2eda5a1fa62dd9440a117b81f29855dd, type: 2}
-  - {fileID: 11400000, guid: 9db2c106ba622a046a70617dac091d22, type: 2}
   Itemblock: {fileID: 4069734}
   Q: 0
   NPcfxCanvas: {fileID: 0}
@@ -1044,6 +1114,7 @@ Transform:
   - {fileID: 2102044612}
   - {fileID: 1087021374}
   - {fileID: 943493576}
+  - {fileID: 119001785}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1101,10 +1172,12 @@ MonoBehaviour:
   PlayerCo: {fileID: 1844985854}
   PlayerTra: {fileID: 1844985853}
   O_Position: {x: -4.01, y: -0.4}
+  N_Data: {fileID: 11400000, guid: 0fe0c435f86b7bc4cb53cce7a51ce1b9, type: 2}
   NPcSpeed: 1
   IntoEye: 0
   NPCrig: {fileID: 383300201}
   NpcSp: {fileID: 0}
+  QuestCheckZone: {fileID: 0}
   Direction: {x: 0, y: 0}
   TouchPlayer: 0
   Npcaim: {fileID: 383300204}
@@ -1118,10 +1191,6 @@ MonoBehaviour:
   standpoint: {fileID: 1074825433}
   Npctouch: {fileID: 2102044614}
   GM: {fileID: 0}
-  questData:
-  - {fileID: 11400000, guid: 2ec199cb9424fb64bbc98b98ac2db3c0, type: 2}
-  - {fileID: 11400000, guid: 2eda5a1fa62dd9440a117b81f29855dd, type: 2}
-  - {fileID: 11400000, guid: 9db2c106ba622a046a70617dac091d22, type: 2}
   Itemblock: {fileID: 4069734}
   Q: 0
   NPcfxCanvas: {fileID: 0}
@@ -2516,6 +2585,7 @@ MonoBehaviour:
   - "\u6587\u4EF6A"
   _inputname: {fileID: 0}
   HaveQuest: []
+  ReCheckMan: []
 --- !u!4 &990932218
 Transform:
   m_ObjectHideFlags: 0
