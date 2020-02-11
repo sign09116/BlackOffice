@@ -14,18 +14,20 @@ public class QuestCheckManager : MonoBehaviour
     {
 
         C_GM = GameObject.FindObjectOfType<GameManager>();
-        this.enabled = false;
+
     }
 
     private void OnTriggerStay2D(Collider2D stay)
     {
-        if (stay.tag == "Player")
+
+    }
+    private void OnCollisionEnter2D(Collision2D hit)
+    {
+        if (hit.gameObject.GetComponent<Collider2D>().tag == "Player")
         {
-            string name = C_GM.ReCheckMan[0];
-            // reurnNPC = name;
+            print("可繳回道具");
         }
     }
-
 
 
     #endregion

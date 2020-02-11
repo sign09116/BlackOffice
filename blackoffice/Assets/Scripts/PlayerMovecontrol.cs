@@ -27,7 +27,7 @@ public class PlayerMovecontrol : MonoBehaviour
     public Transform standingPoint;
     public bool inDeadZoom;
     public Animator PlayerAni;
-
+    public bool canMove;
 
     #endregion
 
@@ -82,6 +82,7 @@ public class PlayerMovecontrol : MonoBehaviour
     }
     public void OnMoveUpDown()
     {
+        canMove = true;
         MoveUP = true;
         PlayerAni.SetBool("向上", true);
         // _moveCoroutine = StartCoroutine(Move(Vector2.up));
@@ -97,7 +98,7 @@ public class PlayerMovecontrol : MonoBehaviour
 
     public void OnMoveDownDown()
     {
-
+        canMove = true;
         MoveDown = true;
         PlayerAni.SetBool("向下", true);
 
@@ -115,6 +116,7 @@ public class PlayerMovecontrol : MonoBehaviour
 
     public void OnMoverightDown()
     {
+        canMove = true;
         MoveRight = true;
         PlayerAni.SetBool("向右", true);
 
@@ -136,6 +138,7 @@ public class PlayerMovecontrol : MonoBehaviour
 
     public void OnMoveleftDown()
     {
+        canMove = true;
         MoveLeft = true;
         PlayerAni.SetBool("向左", true);
 
@@ -211,45 +214,62 @@ public class PlayerMovecontrol : MonoBehaviour
     }
     private void Update()
     {
-        if (MoveUP)
+        if (canMove)
         {
-            PlayerTm.Translate(0, 1 * MoveSpeed * Time.deltaTime, 0, Space.World);
-            // PlayerRd.MoveRotation(0);
-            PlayerSP.flipY = false;
-
-        }
-        else if (MoveDown)
-        {
-            PlayerTm.Translate(0, -1 * MoveSpeed * Time.deltaTime, 0, Space.World);
-            //PlayerRd.MoveRotation(180);
-            standingPoint = transform.Find("Triangle (1)");
-            PlayerSP.sprite = idel[0];
 
 
-        }
-        else if (MoveRight)
-        {
-            PlayerTm.Translate(1 * MoveSpeed * Time.deltaTime, 0, 0, Space.World);
-            //PlayerRd.MoveRotation(-90);
-            standingPoint = transform.Find("Triangle (3)");
-            PlayerSP.sprite = idel[2];
-        }
-        else if (MoveLeft)
-        {
-            PlayerTm.Translate(-1 * MoveSpeed * Time.deltaTime, 0, 0, Space.World);
-            //PlayerRd.MoveRotation(90);
-            standingPoint = transform.Find("Triangle (2)");
-            PlayerSP.sprite = idel[1];
-        }
-        else
-        {
-            // PlayerTm.position = new Vector3(PlayerTm.position.x, PlayerTm.position.y, PlayerTm.position.z);
-        }
-        PlayerTm.position = new Vector3(Mathf.Clamp(PlayerTm.position.x, -5.41f, 5.47f), Mathf.Clamp(PlayerTm.position.y, -3.11f, 2.10f), PlayerTm.position.z);
+            if (MoveUP)
+            {
+                PlayerTm.Translate(0, 1 * MoveSpeed * Time.deltaTime, 0, Space.World);
+                // PlayerRd.MoveRotation(0);
+                PlayerSP.flipY = false;
 
+            }
+            else if (MoveDown)
+            {
+                PlayerTm.Translate(0, -1 * MoveSpeed * Time.deltaTime, 0, Space.World);
+                //PlayerRd.MoveRotation(180);
+                standingPoint = transform.Find("Triangle (1)");
+                PlayerSP.sprite = idel[0];
+
+
+            }
+            else if (MoveRight)
+            {
+                PlayerTm.Translate(1 * MoveSpeed * Time.deltaTime, 0, 0, Space.World);
+                //PlayerRd.MoveRotation(-90);
+                standingPoint = transform.Find("Triangle (3)");
+                PlayerSP.sprite = idel[2];
+            }
+            else if (MoveLeft)
+            {
+                PlayerTm.Translate(-1 * MoveSpeed * Time.deltaTime, 0, 0, Space.World);
+                //PlayerRd.MoveRotation(90);
+                standingPoint = transform.Find("Triangle (2)");
+                PlayerSP.sprite = idel[1];
+            }
+            else
+            {
+                // PlayerTm.position = new Vector3(PlayerTm.position.x, PlayerTm.position.y, PlayerTm.position.z);
+            }
+            PlayerTm.position = new Vector3(Mathf.Clamp(PlayerTm.position.x, -5.41f, 5.47f), Mathf.Clamp(PlayerTm.position.y, -3.11f, 2.10f), PlayerTm.position.z);
+
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D hit)
+    {
+        if (!hit.CompareTag("Player") || !hit.CompareTag("傳送門"))
+        {
+
+            canMove = false;
+            print(hit.name);
+        }
+        while (hit.name == "會議室A" || hit.name == "會議室B")
+        {
+            // Instantiate(Resources.Load("會議資料"), , Quaternion.identity);
+        }
 
     }
-
 }
 
 

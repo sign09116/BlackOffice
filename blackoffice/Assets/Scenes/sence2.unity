@@ -204,7 +204,7 @@ GameObject:
   - component: {fileID: 1125070369}
   m_Layer: 0
   m_Name: "\u5411\u4E0B\u6A13\u68AF "
-  m_TagString: Untagged
+  m_TagString: "\u50B3\u9001\u9580"
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -277,7 +277,7 @@ GameObject:
   - component: {fileID: 1245342165}
   m_Layer: 0
   m_Name: "\u5411\u4E0A\u6A13\u68AF"
-  m_TagString: Untagged
+  m_TagString: "\u50B3\u9001\u9580"
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

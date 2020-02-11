@@ -14,6 +14,8 @@ public class NPCData : ScriptableObject
     public List<string> returnNPC_Name;
     [Header("是否處於任務中")]
     public bool isQuest;
+    [Header("會議資料生成位置")]
+    public GameObject[] filePos;
 
     #endregion
 }

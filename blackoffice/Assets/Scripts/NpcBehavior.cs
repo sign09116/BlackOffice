@@ -207,6 +207,7 @@ public class NpcBehavior : MonoBehaviour
 
 
         NPcMove();
+        NPcfxCanvas.transform.eulerAngles = new Vector3(0, 0, 0);
 
     }
     private void FixedUpdate()
@@ -267,6 +268,20 @@ public class NpcBehavior : MonoBehaviour
         GM.HaveQuest.Add(N_Data.Q_data[Q]);
         GM.ReCheckMan.Add(N_Data.Q_data[Q].checkMan);
         print(N_Data.Q_data[Q].checkMan);
+        waitQuestReurn();
+
+    }
+
+    public void waitQuestReurn()
+    {
+        if (GM.ReCheckMan[0].Contains(gameObject.name))
+        {
+            randomPatrol2D.StopPatrol();
+        }
+        else
+        {
+            return;
+        }
 
 
     }
