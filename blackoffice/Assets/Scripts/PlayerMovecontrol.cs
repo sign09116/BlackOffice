@@ -12,7 +12,8 @@ public class PlayerMovecontrol : MonoBehaviour
     #region 屬性
 
     public float MoveSpeed;
-
+    public GameManager GM;
+    public NpcBehavior GetNPCBehavior;
     public GameObject[] MoveButton;
     public Rigidbody2D PlayerRd;
     public Transform PlayerTm;
@@ -76,6 +77,8 @@ public class PlayerMovecontrol : MonoBehaviour
 
     private void Start()
     {
+        GM = GameObject.FindObjectOfType<GameManager>();
+        GetNPCBehavior = GameObject.FindObjectOfType<NpcBehavior>();
         PlayerAni = GetComponent<Animator>();
         PlayerSP = GetComponent<SpriteRenderer>();
 
@@ -264,9 +267,36 @@ public class PlayerMovecontrol : MonoBehaviour
             canMove = false;
             print(hit.name);
         }
-        while (hit.name == "會議室A" || hit.name == "會議室B")
+        if (hit.name == "會議室A" || hit.name == "會議室B")
         {
-            // Instantiate(Resources.Load("會議資料"), , Quaternion.identity);
+            GameObject[] ChangeItem = GameObject.FindGameObjectsWithTag("資料文件");
+            if (ChangeItem == null) return;
+            else
+            {
+                for (int i = 0; i < ChangeItem.Length; i++)
+                {
+                    // Destroy(ChangeItem[i], 0.5f);
+                }
+
+            }
+
+
+        }
+        if (hit.tag == "咖啡機")
+        {
+            GameObject[] ChangeItem = GameObject.FindGameObjectsWithTag("咖啡杯");
+            if (ChangeItem == null) return;
+            else
+            {
+                for (int i = 0; i < ChangeItem.Length; i++)
+                {
+                    // ChangeItem[i].GetComponent<Animator>().SetBool("裝滿", true);
+
+                }
+            }
+
+
+
         }
 
     }

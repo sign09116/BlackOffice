@@ -91,9 +91,11 @@ GameObject:
   - component: {fileID: 6659526596516118825}
   - component: {fileID: 1435415545170479273}
   - component: {fileID: 5564434339278099019}
+  - component: {fileID: 2131889382290219136}
+  - component: {fileID: 7199654590664944543}
   m_Layer: 0
   m_Name: "\u4EFB\u52D9\u9053\u51773"
-  m_TagString: Untagged
+  m_TagString: "\u5496\u5561\u676F"
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -146,7 +148,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: e0cb28f5629554348859122c327653c3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cebbcbfa358f26340a682932003263c6, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -197,3 +199,37 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &2131889382290219136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1520420141854042163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ae160178274a5d43b32dde529671c75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ItemName: 
+  receiveMan: 
+  releaseMan: 
+--- !u!95 &7199654590664944543
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1520420141854042163}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9fe0af5de6d497a46beef62c6b493c01, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

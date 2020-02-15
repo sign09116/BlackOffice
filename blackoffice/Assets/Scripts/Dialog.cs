@@ -9,12 +9,13 @@ public class Dialog : MonoBehaviour
     private int m_index = 0;
     private string _currentMessage;
     public float _charDisplayInterval = 0.25f;
-    public  Text _text;
+    public Text _text;
     public int _currentCharIndex;
     public int _currentSentenceCount;
     public GameObject sayingDialog;
+    public Text SpeakerName;
     public int ponitdown;
-   
+
 
     #endregion
 
@@ -23,12 +24,12 @@ public class Dialog : MonoBehaviour
 
 
     #region 方法
-   
+
 
 
     public void NextMessage()
     {
-        
+
         int charstarIndex = 1;
         ponitdown++;
         if (_currentCharIndex > _currentSentenceCount)
@@ -49,7 +50,7 @@ public class Dialog : MonoBehaviour
                 StopAllCoroutines();
                 StartCoroutine(DisplayMessage(charstarIndex));
             }
-            
+
             else
             {
                 OnDisable();
@@ -58,8 +59,8 @@ public class Dialog : MonoBehaviour
         }
         //StopAllCoroutines();
         //WaitForSeconds wait = new WaitForSeconds(1);
-      
-        
+
+
 
     }
     private IEnumerator DisplayMessage(int charIndex)
@@ -74,7 +75,7 @@ public class Dialog : MonoBehaviour
             _text.text = _currentMessage.Substring(0, _currentCharIndex);
             _currentCharIndex++;
             yield return wait;
-         }
+        }
 
     }
 
@@ -95,16 +96,17 @@ public class Dialog : MonoBehaviour
     private void Awake()
     {
         _text = GetComponentInChildren<Text>();
-        
+        SpeakerName = transform.Find("說話者名稱").GetComponent<Text>();
+
     }
     private void Start()
     {
-        
-       
+
+
     }
     private void Update()
     {
-        
+
     }
 
 

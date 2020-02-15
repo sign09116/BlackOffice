@@ -43,6 +43,9 @@ public class GameManager : MonoBehaviour
     public List<QuestData> HaveQuest;
     [Header("回報對象清單")]
     public List<string> ReCheckMan;
+    [Header("代辦事項物件")]
+    public GameObject Agendumobj;
+    public GameObject MissionText;
     #endregion
 
 
@@ -74,6 +77,8 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
+        Agendumobj = GameObject.Find("任務介面");
+        MissionText = Resources.Load("任務內容") as GameObject;
         if (Application.loadedLevelName == "Menu")
         {
             Invoke("showBackground", 15f);

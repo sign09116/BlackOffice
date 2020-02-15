@@ -12,7 +12,11 @@ public class ConferenceRoom : MonoBehaviour
     #region 事件
     private void Start()
     {
-        //data.filePos=transform.Find("資料生成位置");
+        for (int i = 0; i < data.filePos.Length; i++)
+        {
+            Vector3 pos = data.filePos[i].transform.position;
+            print(pos);
+        }
     }
     #endregion
 

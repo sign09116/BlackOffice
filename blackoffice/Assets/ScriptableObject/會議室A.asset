@@ -16,8 +16,9 @@ MonoBehaviour:
   returnNPC_Name: []
   isQuest: 0
   filePos:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 5210635572867657694, guid: 0bd5cc3d757d9974d9821ac1c5ec5f05, type: 3}
+  - {fileID: 1553892714074657267, guid: 9efdc43baa964ed41a9f3b00d1da709c, type: 3}
+  - {fileID: 3618421786795987539, guid: 308a26d02a686ff46878499fd4f83553, type: 3}
+  - {fileID: 5240588421825756292, guid: 1a1c43ad327dea744a82682dfadae44c, type: 3}
+  - {fileID: 4005096205222101443, guid: 2447bf325a7498d49b14da38d81f3ab9, type: 3}
+  - {fileID: 5940561708847752021, guid: 644b4eaf1d1459146a214b6fa3a06b0f, type: 3}
