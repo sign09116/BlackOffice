@@ -273,11 +273,32 @@ public class PlayerMovecontrol : MonoBehaviour
             if (ChangeItem == null) return;
             else
             {
+                
                 for (int i = 0; i < ChangeItem.Length; i++)
                 {
-                    // Destroy(ChangeItem[i], 0.5f);
-                }
+                     Destroy(ChangeItem[i], 0.5f);
+                    //GM.CanUse = true;
 
+                }
+                if (hit.name == "會議室A")
+                {
+
+                }
+                else 
+                {
+                    GameObject[] B = GameObject.FindGameObjectsWithTag("資料生成位置B");
+                    for (int i = 0; i < B.Length; i++)
+                    {
+                        B[i].GetComponent<SpriteRenderer>().enabled = true;
+                    }
+                   
+                }
+                GM.QuestClear("任務C","會議室A");
+               GameObject QT= GameObject.Find("任務內容(Clone)");
+                if (QT.GetComponent<Text>().text== "請將資料發放置會議室A")
+                {
+                    Destroy(QT, 0.2f);
+                }
             }
 
 
@@ -290,15 +311,22 @@ public class PlayerMovecontrol : MonoBehaviour
             {
                 for (int i = 0; i < ChangeItem.Length; i++)
                 {
-                    // ChangeItem[i].GetComponent<Animator>().SetBool("裝滿", true);
+                     ChangeItem[i].GetComponent<Animator>().SetBool("裝滿", true);
 
                 }
             }
-
+            
 
 
         }
 
+    }
+    private void OnTriggerStay2D(Collider2D hit)
+    {
+        if (hit.tag == "CheckZone")
+        {
+            GM.CanUse = true;
+        }
     }
 }
 

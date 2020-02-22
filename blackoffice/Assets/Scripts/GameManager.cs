@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using System.Linq;
+using System;
 
 public class GameManager : MonoBehaviour
 {
@@ -40,12 +41,15 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// 玩家持有任務清單
     /// </summary>
-    public List<QuestData> HaveQuest;
+    public List<string> HaveQuest;
     [Header("回報對象清單")]
     public List<string> ReCheckMan;
     [Header("代辦事項物件")]
     public GameObject Agendumobj;
     public GameObject MissionText;
+    [Header("可以使用道具")]
+    public bool CanUse;
+
     #endregion
 
 
@@ -56,8 +60,32 @@ public class GameManager : MonoBehaviour
 
     //     Player.GetComponent<CapsuleCollider2D>().enabled = true;
     // }
+    public void FindCheckMan(string name)
+    {
+        if (ReCheckMan != null)
+            try
+            {
+                GameObject R_NPC = GameObject.Find(name);
+                //print("找到"+name);
+                if (R_NPC.transform.GetChild(3).GetComponent<BoxCollider2D>().enabled == true) return;
+                R_NPC.transform.GetChild(3).GetComponent<BoxCollider2D>().enabled = true;
 
 
+            }
+            catch { }
+        else
+        {
+            return;
+        }
+        
+
+        
+    }
+    public void QuestClear(string Name,string checkman)
+    {
+        HaveQuest.Remove(Name);
+        ReCheckMan.Remove(checkman);
+    }
     #endregion
 
 

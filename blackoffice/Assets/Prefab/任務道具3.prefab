@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 1435415545170479273}
   - component: {fileID: 5564434339278099019}
   - component: {fileID: 2131889382290219136}
-  - component: {fileID: 7199654590664944543}
+  - component: {fileID: 6030487084732519167}
   m_Layer: 0
   m_Name: "\u4EFB\u52D9\u9053\u51773"
   m_TagString: "\u5496\u5561\u676F"
@@ -196,7 +196,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1435415545170479273}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2131889382290219136}
+        m_MethodName: UseItem
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &2131889382290219136
@@ -214,7 +225,8 @@ MonoBehaviour:
   ItemName: 
   receiveMan: 
   releaseMan: 
---- !u!95 &7199654590664944543
+  GM: {fileID: 0}
+--- !u!95 &6030487084732519167
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
@@ -224,7 +236,7 @@ Animator:
   m_GameObject: {fileID: 1520420141854042163}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 9fe0af5de6d497a46beef62c6b493c01, type: 2}
+  m_Controller: {fileID: 9100000, guid: b5fdc241a038a8540bf65da0cabe0345, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

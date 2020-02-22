@@ -12,6 +12,7 @@ public class ItemManager : MonoBehaviour
     [Header("任務發佈者")]
     public string releaseMan;
     public GameManager GM;
+    public bool CanUse;
     // public Dictionary<QuestData, string> dic;
 
     #endregion
@@ -36,7 +37,11 @@ public class ItemManager : MonoBehaviour
 
     public void UseItem()
     {
-        //GM.HaveQuest.Remove();
+        if (GM.CanUse)
+        {
+            Destroy(GameObject.Find(ItemName), 0.1f);
+        }
+        
     }
     #endregion
 

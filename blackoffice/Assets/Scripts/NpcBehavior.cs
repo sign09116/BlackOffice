@@ -257,6 +257,8 @@ public class NpcBehavior : MonoBehaviour
         yield return new WaitForSeconds(1f);
         GM.maskObj.SetActive(false);
         GM.saydialog.SetActive(false);
+      
+
         // NpcReturnPosition();
     }
     /// <summary>
@@ -268,15 +270,17 @@ public class NpcBehavior : MonoBehaviour
         GameObject rewardItem = Instantiate(N_Data.Q_data[Q].RewardItem, Camera.main.transform.position, new Quaternion(0, 0, 0, 0));
 
         rewardItem.transform.SetParent(Itemblock);
-        GM.HaveQuest.Add(N_Data.Q_data[Q]);
+        GM.HaveQuest.Add(N_Data.Q_data[Q].name);
         GM.ReCheckMan.Add(N_Data.Q_data[Q].checkMan);
         rewardItem.GetComponent<ItemManager>().GetItem(rewardItem.name, N_Data.Q_data[Q].OrderMaster, N_Data.Q_data[Q].checkMan);//獲得道具名稱與來源
 
         GameObject MissionText = Instantiate(GM.MissionText, GM.Agendumobj.transform.position, Quaternion.identity);//任務內容生成
         MissionText.transform.SetParent(GM.Agendumobj.transform);
         MissionText.GetComponent<Text>().text = GM.saydialog.GetComponentInChildren<Text>().text;
-        print(N_Data.Q_data[Q].checkMan);
-        waitQuestReurn();
+       // print(N_Data.Q_data[Q].checkMan);
+        N_Data.isQuest = false;
+        GM.FindCheckMan(N_Data.Q_data[Q].checkMan);
+        // waitQuestReurn();
 
     }
 
