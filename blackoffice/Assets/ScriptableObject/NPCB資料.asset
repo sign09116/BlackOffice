@@ -18,7 +18,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9db2c106ba622a046a70617dac091d22, type: 2}
   returnNPC_Name:
   - "\u4E3B\u4EFBB"
-  - "\u5973\u8077\u54E1B"
+  - "\u8077\u54E1A"
   - "\u7537\u8077\u54E1B"
-  isQuest: 0
+  isQuest: 1
   filePos: []

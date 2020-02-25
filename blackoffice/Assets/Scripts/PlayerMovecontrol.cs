@@ -273,10 +273,10 @@ public class PlayerMovecontrol : MonoBehaviour
             if (ChangeItem == null) return;
             else
             {
-                
+
                 for (int i = 0; i < ChangeItem.Length; i++)
                 {
-                     Destroy(ChangeItem[i], 0.5f);
+                    Destroy(ChangeItem[i], 0.5f);
                     //GM.CanUse = true;
 
                 }
@@ -284,21 +284,23 @@ public class PlayerMovecontrol : MonoBehaviour
                 {
 
                 }
-                else 
+                else
                 {
                     GameObject[] B = GameObject.FindGameObjectsWithTag("資料生成位置B");
                     for (int i = 0; i < B.Length; i++)
                     {
                         B[i].GetComponent<SpriteRenderer>().enabled = true;
                     }
-                   
+
                 }
-                GM.QuestClear("任務C","會議室A");
-               GameObject QT= GameObject.Find("任務內容(Clone)");
-                if (QT.GetComponent<Text>().text== "請將資料發放置會議室A")
+                GM.QuestClear("任務C", "會議室A");
+                for (int i = 0; i < 3; i++)
                 {
+                    GameObject QT = GameObject.Find("請將資料發放置會議室A");
                     Destroy(QT, 0.2f);
                 }
+
+
             }
 
 
@@ -311,11 +313,11 @@ public class PlayerMovecontrol : MonoBehaviour
             {
                 for (int i = 0; i < ChangeItem.Length; i++)
                 {
-                     ChangeItem[i].GetComponent<Animator>().SetBool("裝滿", true);
+                    ChangeItem[i].GetComponent<Animator>().SetBool("裝滿", true);
 
                 }
             }
-            
+
 
 
         }

@@ -196,6 +196,28 @@ public class NpcBehavior : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        if (GM.ReCheckMan != null)
+
+        {
+
+            for (int i = 0; i < 3; i++)
+            {
+                GM.FindCheckMan(GM.ReCheckMan[i]);
+            }
+
+            if (!GM.ReCheckMan.Contains(gameObject.name))
+            {
+                N_Data.isQuest = false;
+                isreturn = true;
+                isreturn = false;
+            }
+            else
+            {
+                isreturn = false;
+            }
+        }
+
+
 
         my_PlayerName = PlayerPrefs.GetString(GM.PlayerName);
 
@@ -247,6 +269,12 @@ public class NpcBehavior : MonoBehaviour
             GM.saydialog.GetComponent<Dialog>().SpeakerName.text = gameObject.name;
             GM.saydialog.GetComponentInChildren<Text>().text = my_PlayerName + N_Data.Q_data[Q].Q_Massage[0] + N_Data.Q_data[Q].checkMan;
         }
+        else if (Q == 1)
+        {
+            N_Data.Q_data[Q].checkMan = gameObject.name;
+            GM.saydialog.GetComponent<Dialog>().SpeakerName.text = gameObject.name;
+            GM.saydialog.GetComponentInChildren<Text>().text = my_PlayerName + N_Data.Q_data[Q].Q_Massage[0];
+        }
         else
         {
             GM.saydialog.GetComponent<Dialog>().SpeakerName.text = gameObject.name;
@@ -257,7 +285,7 @@ public class NpcBehavior : MonoBehaviour
         yield return new WaitForSeconds(1f);
         GM.maskObj.SetActive(false);
         GM.saydialog.SetActive(false);
-      
+
 
         // NpcReturnPosition();
     }
@@ -272,26 +300,36 @@ public class NpcBehavior : MonoBehaviour
         rewardItem.transform.SetParent(Itemblock);
         GM.HaveQuest.Add(N_Data.Q_data[Q].name);
         GM.ReCheckMan.Add(N_Data.Q_data[Q].checkMan);
-        rewardItem.GetComponent<ItemManager>().GetItem(rewardItem.name, N_Data.Q_data[Q].OrderMaster, N_Data.Q_data[Q].checkMan);//獲得道具名稱與來源
+        rewardItem.GetComponent<ItemManager>().GetItem(rewardItem.name, N_Data.Q_data[Q].name, N_Data.Q_data[Q].checkMan);//獲得道具名稱與來源
 
         GameObject MissionText = Instantiate(GM.MissionText, GM.Agendumobj.transform.position, Quaternion.identity);//任務內容生成
         MissionText.transform.SetParent(GM.Agendumobj.transform);
+        if (Q == 0)
+        {
+            MissionText.name = N_Data.Q_data[Q].Q_Massage[0] + N_Data.Q_data[Q].checkMan;
+        }
+        else
+        {
+            MissionText.name = N_Data.Q_data[Q].Q_Massage[0];
+        }
+
         MissionText.GetComponent<Text>().text = GM.saydialog.GetComponentInChildren<Text>().text;
-       // print(N_Data.Q_data[Q].checkMan);
-        N_Data.isQuest = false;
-        GM.FindCheckMan(N_Data.Q_data[Q].checkMan);
-        // waitQuestReurn();
+        // print(N_Data.Q_data[Q].checkMan);
+
+
+        waitQuestReurn();
 
     }
 
     public void waitQuestReurn()
     {
-        if (GM.ReCheckMan[0].Contains(gameObject.name))
+        if (GM.ReCheckMan.Contains(gameObject.name))
         {
             randomPatrol2D.StopPatrol();
         }
         else
         {
+            isreturn = true;
             return;
         }
 

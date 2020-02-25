@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: "\u4EFB\u52D9A"
   m_EditorClassIdentifier: 
   OrderMaster: "\u8077\u54E1 A"
-  checkMan: "\u8077\u54E1 B"
+  checkMan: "\u4E3B\u4EFBB"
   Q_Massage:
   - "\u5C07\u6587\u4EF6\u4EA4\u7D66"
   RewardItem: {fileID: 1520420141854042163, guid: 143c32cda4591ae44ad6ff10b5612ca7,

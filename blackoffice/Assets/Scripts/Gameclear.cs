@@ -7,6 +7,9 @@ public class Gameclear : MonoBehaviour
 {
     #region 屬性
     public GameObject GameClearInterFace;
+    public GameManager GM;
+    public WorkingtTime workingtTime;
+    public int pay;
 
 
     #endregion
@@ -25,13 +28,27 @@ public class Gameclear : MonoBehaviour
     private void Awake()
     {
         GameClearInterFace.SetActive(false);
+        GM = GameObject.FindObjectOfType<GameManager>();
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            GameClearInterFace.SetActive(true);
+            if (GM.HaveQuest == null)
+            {
+                GameClearInterFace.SetActive(true);
+            }
+            else
+            {
+                return;
+            }
+
         }
+    }
+    private void Start()
+    {
+        workingtTime = GameObject.FindObjectOfType<WorkingtTime>();
+
     }
     #endregion
 

@@ -28,13 +28,13 @@ public class WorkingtTime : MonoBehaviour
     }
 
     // Use this for initialization
-    void Start ()
+    void Start()
     {
-		
-	}
-	
-	// Update is called once per frame
-	void Update ()
+
+    }
+
+    // Update is called once per frame
+    void Update()
     {
 
         //w_Time = Time.time;
@@ -45,6 +45,7 @@ public class WorkingtTime : MonoBehaviour
         w_Time++;
         if (w_Time == 360)
         {
+
             WorkTime++;
             if (WorkTime < 10)
             {
@@ -52,18 +53,22 @@ public class WorkingtTime : MonoBehaviour
                 T_Rest();
 
             }
-            else  if (WorkTime >= 10)
+            else if (WorkTime >= 10)
             {
                 GetComponent<Text>().text = WorkTime.ToString();
                 T_Rest();
 
             }
-           
+            if (WorkTime > 60)
+            {
+                WorkTime = 0;
+            }
+
             T_Rest();
 
         }
-        
 
-		
-	}
+
+
+    }
 }
