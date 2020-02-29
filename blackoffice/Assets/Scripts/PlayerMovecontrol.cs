@@ -265,12 +265,14 @@ public class PlayerMovecontrol : MonoBehaviour
         {
 
             canMove = false;
+            MoveSpeed=-MoveSpeed;
+            
             print(hit.name);
         }
         if (hit.name == "會議室A" || hit.name == "會議室B")
         {
             GameObject[] ChangeItem = GameObject.FindGameObjectsWithTag("資料文件");
-            if (ChangeItem == null) return;
+            if (ChangeItem.Length == 0) return;
             else
             {
 
@@ -330,9 +332,18 @@ public class PlayerMovecontrol : MonoBehaviour
             GM.CanUse = true;
         }
     }
+  private void OnTriggerExit2D(Collider2D hit) 
+  { 
+      if (!hit.CompareTag("Player") || !hit.CompareTag("傳送門"))
+        {
+
+            canMove = true;
+            MoveSpeed=-MoveSpeed;
+        
+    }
+  }
+
 }
-
-
 
 #endregion
 

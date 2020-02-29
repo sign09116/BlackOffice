@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Gameclear : MonoBehaviour
 {
@@ -9,17 +10,27 @@ public class Gameclear : MonoBehaviour
     public GameObject GameClearInterFace;
     public GameManager GM;
     public WorkingtTime workingtTime;
+    public Text total_timetext,totalpaytext;
+    public int C_totaltime;
     public int pay;
-
+    public GameObject dontdestroy;
+    public Button back;
+    /// <summary>
+    /// 儲存總遊戲時間欄位
+    /// </summary>
+public string totaltTime="totaltTime";
 
     #endregion
 
 
     #region 方法
     public void OnMenuButtonClick()
-    {
-        SceneManager.LoadScene("Menu");
+    { PlayerPrefs.DeleteKey(totaltTime);
+    Destroy(dontdestroy,0.01f);
+    SceneManager.LoadScene("Menu");
     }
+        
+       
 
     #endregion
 
@@ -29,14 +40,26 @@ public class Gameclear : MonoBehaviour
     {
         GameClearInterFace.SetActive(false);
         GM = GameObject.FindObjectOfType<GameManager>();
+        dontdestroy=GameObject.Find("DontDestroyObj");
+        
+   
+
     }
+     private void Start()
+    {
+        
+    C_totaltime=PlayerPrefs.GetInt(totaltTime);
+   
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            if (GM.HaveQuest == null)
+            if (GM.HaveQuest.Count==0)
             {
-                GameClearInterFace.SetActive(true);
+                showClearInterFace();
+                back.onClick.AddListener(OnMenuButtonClick);
             }
             else
             {
@@ -45,10 +68,15 @@ public class Gameclear : MonoBehaviour
 
         }
     }
-    private void Start()
-    {
-        workingtTime = GameObject.FindObjectOfType<WorkingtTime>();
+   
 
+    private void showClearInterFace()
+    {GameClearInterFace.SetActive(true);
+    back=GameObject.Find("MenuButton").GetComponent<Button>();
+     total_timetext=GameObject.FindGameObjectWithTag("加班時數").GetComponent<Text>();
+    totalpaytext=GameObject.FindGameObjectWithTag("欠薪").GetComponent<Text>();
+        total_timetext.text=C_totaltime.ToString("0.0")+"分鐘";//總加班時數取到小數點第一位
+        totalpaytext.text=(C_totaltime*10)+"元";
     }
     #endregion
 
