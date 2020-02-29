@@ -265,7 +265,7 @@ public class PlayerMovecontrol : MonoBehaviour
         {
 
             canMove = false;
-            MoveSpeed=-MoveSpeed;
+            
             
             print(hit.name);
         }
@@ -295,12 +295,11 @@ public class PlayerMovecontrol : MonoBehaviour
                     }
 
                 }
-                GM.QuestClear("任務C", "會議室A");
-                for (int i = 0; i < 3; i++)
-                {
-                    GameObject QT = GameObject.Find("請將資料發放置會議室A");
+                GM.QuestClear("任務C", "會議室B");
+                
+                    GameObject QT = GameObject.Find("請將資料發放置會議室B");
                     Destroy(QT, 0.2f);
-                }
+                
 
 
             }
@@ -338,7 +337,7 @@ public class PlayerMovecontrol : MonoBehaviour
         {
 
             canMove = true;
-            MoveSpeed=-MoveSpeed;
+           
         
     }
   }

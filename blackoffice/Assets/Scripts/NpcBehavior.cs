@@ -199,7 +199,7 @@ public class NpcBehavior : MonoBehaviour
         if (GM.ReCheckMan != null)
 
         {
-
+            N_Data.isQuest = false;
             for (int i = 0; i < 3; i++)
             {
                 GM.FindCheckMan(GM.ReCheckMan[i]);
@@ -208,12 +208,12 @@ public class NpcBehavior : MonoBehaviour
             if (!GM.ReCheckMan.Contains(gameObject.name))
             {
                 N_Data.isQuest = false;
-                isreturn = true;
-                isreturn = false;
+                // isreturn = true;
+                // isreturn = false;
             }
             else
             {
-                isreturn = false;
+                // isreturn = false;
             }
         }
 
@@ -329,7 +329,7 @@ public class NpcBehavior : MonoBehaviour
         }
         else
         {
-            isreturn = true;
+           // isreturn = true;
             return;
         }
 
